@@ -1,8 +1,9 @@
 class CategoriesController < ApplicationController
-	before_action :require_user, only: [:new, :create]
+	before_action :require_user, only: [:new, :create] 	# defined in application_controller.rb
+	before_action :require_admin, only: [:new, :create]	# defined in application_controller.rb
 
 	def show
-		@category = Category.find(params[:id])
+		@category = Category.find_by(slug: params[:id])
 	end
 
 	def new
